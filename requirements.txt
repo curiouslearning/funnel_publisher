@@ -1,0 +1,7 @@
+datetime
+google-cloud-logging
+google-cloud-bigquery
+google.cloud
+google.cloud.logging
+rich
+google-cloud-secret-manager==2.0.0
