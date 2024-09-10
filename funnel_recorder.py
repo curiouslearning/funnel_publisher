@@ -2,6 +2,7 @@ from google.oauth2 import service_account
 from google.cloud import bigquery
 from google.cloud import secretmanager
 import json
+import pandas as pd
 
 def get_gcp_credentials():
     # first get credentials to secret manager
@@ -23,12 +24,22 @@ def get_gcp_credentials():
             "https://www.googleapis.com/auth/bigquery",
         ],
     )
+    try:
+        bq_client = bigquery.Client(
+            credentials=gcp_credentials, project="dataexploration-193817")
+    except:
+        print("Failed to obtain a Big Query client")
 
-    bq_client = bigquery.Client(
-        credentials=gcp_credentials, project="dataexploration-193817"
-    )
     return bq_client
 
 def publish_funnel():
     bq_client = get_gcp_credentials()
-    print( "Hello world!!!")
+    sql_query = f"""
+                SELECT *
+                    FROM `dataexploration-193817.user_data.cr_first_open`
+                """
+
+    df_cr_first_open = bq_client.query(sql_query).to_dataframe()
+
+
+    print( df_cr_first_open.info())
