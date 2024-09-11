@@ -3,6 +3,8 @@ google-cloud-logging
 google-cloud-bigquery
 google.cloud
 google.cloud.logging
-pandas
+pandas==2.2.2
+pandas-gbq==0.23.1
 db-dtypes
-google-cloud-secret-manager==2.0.0
+google-cloud-secret-manager
+

@@ -1,0 +1,117 @@
+[
+    {
+        "name": "date",
+        "type": "DATETIME",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "language",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "DC",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "TS",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "SL",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "PC",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "LA",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "RA",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "GC",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "DC over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "TS over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "TS over DC",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "SL over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "SL over TS",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "PC over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "PC over SL",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "LA over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "LA over PC",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "RA over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "RA over LA",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "GC over LR",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+    {
+        "name": "GC over RA",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    }
+]
