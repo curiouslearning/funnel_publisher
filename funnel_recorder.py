@@ -42,11 +42,11 @@ def publish_funnel():
 
     bq_client,gcp_credentials = get_gcp_credentials()
     
-    df_cr_users, df_cr_first_open, df_cr_app_launch = users.get_users_list(bq_client)
+    df_cr_users,  df_cr_app_launch = users.get_users_list(bq_client)
 
     languages = users.get_language_list(bq_client)
 
-    df_funnel = metrics.build_funnel_dataframe( df_cr_users, df_cr_first_open, df_cr_app_launch,index_col="language", languages=languages)
+    df_funnel = metrics.build_funnel_dataframe( df_cr_users, df_cr_app_launch,index_col="language", languages=languages)
     df_funnel = metrics.add_level_percents(df_funnel)
     try:
         to_gbq(df_funnel, 'dataexploration-193817.user_data.funnel_snapshots', project_id='dataexploration-193817', if_exists='append', credentials=gcp_credentials)

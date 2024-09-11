@@ -13,16 +13,6 @@ start_date = "2021/01/01"
 
 def get_users_list(bq_client):
     try:
-        # These are distinct first_open events for CR - will not contain app_language so can only be used for FO counts
-        sql_query = f"""
-                SELECT *
-                    FROM `dataexploration-193817.user_data.cr_first_open`
-                WHERE
-                    first_open BETWEEN PARSE_DATE('%Y/%m/%d','{start_date}') AND CURRENT_DATE() 
-                """
-
-        df_cr_first_open = bq_client.query(sql_query).to_dataframe()
-
         # All users in the funnel from DC down
         sql_query = f"""
                     SELECT *
@@ -68,7 +58,7 @@ def get_users_list(bq_client):
     max_level_indices = df_cr_users.groupby('user_pseudo_id')['max_user_level'].idxmax()
     df_cr_users = df_cr_users.loc[max_level_indices].reset_index()
 
-    return df_cr_users, df_cr_first_open, df_cr_app_launch
+    return df_cr_users, df_cr_app_launch
 
 
 def get_language_list(bq_client):

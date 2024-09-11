@@ -7,7 +7,7 @@ import metrics
 
 default_daterange = [dt.datetime(2021, 1, 1).date(), dt.date.today()]
 
-def get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+def get_totals_by_metric(df_cr_users, df_cr_app_launch,
     daterange=default_daterange,
     countries_list=[],
     stat="LR",
@@ -20,7 +20,7 @@ def get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
     if len(countries_list) == 0:
         countries_list = users.get_country_list()
 
-    df_user_list = filter_user_data(df_cr_users, df_cr_first_open, df_cr_app_launch,
+    df_user_list = filter_user_data(df_cr_users,  df_cr_app_launch,
         default_daterange, countries_list, stat, cr_app_versions, app=app, language=language
     )
 
@@ -74,7 +74,7 @@ def get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
 # Takes the complete user lists and filters based on input data, and returns
 # a new filtered dataset
 
-def filter_user_data(df_cr_users, df_cr_first_open, df_cr_app_launch,
+def filter_user_data(df_cr_users,  df_cr_app_launch,
     daterange=default_daterange,
     countries_list=["All"],
     stat="LR",
@@ -87,8 +87,6 @@ def filter_user_data(df_cr_users, df_cr_first_open, df_cr_app_launch,
 
     if app == "CR" and stat == "LR":
         df = df_cr_app_launch
-    elif app == "CR" and stat == "FO":
-        df = df_cr_first_open
     else:
         df = df_cr_users
 
@@ -129,7 +127,7 @@ def weeks_since(daterange):
     return difference.days // 7
 
 
-def build_funnel_dataframe( df_cr_users, df_cr_first_open, df_cr_app_launch,
+def build_funnel_dataframe( df_cr_users, df_cr_app_launch,
     index_col="language",
     daterange=default_daterange,
     languages=["All"],
@@ -153,21 +151,21 @@ def build_funnel_dataframe( df_cr_users, df_cr_first_open, df_cr_app_launch,
             start_date = dt.datetime.now().date() - dt.timedelta(i * 7)
             daterange = [start_date, end_date]
 
-        DC = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        DC = metrics.get_totals_by_metric(df_cr_users, df_cr_app_launch,
             daterange,
             stat="DC",
             language=language,
             countries_list=countries_list,
             app="CR",
         )
-        SL = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        SL = metrics.get_totals_by_metric(df_cr_users, df_cr_app_launch,
             daterange,
             stat="SL",
             language=language,
             countries_list=countries_list,
             app="CR",
         )
-        TS = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        TS = metrics.get_totals_by_metric(df_cr_users, df_cr_app_launch,
             daterange,
             stat="TS",
             language=language,
@@ -175,35 +173,35 @@ def build_funnel_dataframe( df_cr_users, df_cr_first_open, df_cr_app_launch,
             app="CR",
         )
 
-        PC = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        PC = metrics.get_totals_by_metric(df_cr_users,  df_cr_app_launch,
             daterange,
             stat="PC",
             language=language,
             countries_list=countries_list,
             app="CR",
         )
-        LA = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        LA = metrics.get_totals_by_metric(df_cr_users,  df_cr_app_launch,
             daterange,
             stat="LA",
             language=language,
             countries_list=countries_list,
             app="CR",
         )
-        LR = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        LR = metrics.get_totals_by_metric(df_cr_users,  df_cr_app_launch,
             daterange,
             stat="LR",
             language=language,
             countries_list=countries_list,
             app="CR",
         )        
-        RA = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        RA = metrics.get_totals_by_metric(df_cr_users, df_cr_app_launch,
             daterange,
             stat="RA",
             language=language,
             countries_list=countries_list,
             app="CR",
         )
-        GC = metrics.get_totals_by_metric(df_cr_users, df_cr_first_open, df_cr_app_launch,
+        GC = metrics.get_totals_by_metric(df_cr_users,  df_cr_app_launch,
             daterange,
             stat="GC",
             language=language,
