@@ -48,6 +48,8 @@ def publish_funnel():
 
     df_funnel = metrics.build_funnel_dataframe( df_cr_users, df_cr_app_launch,index_col="language", languages=languages)
     df_funnel = metrics.add_level_percents(df_funnel)
+    LR = df_funnel["LR"].sum()
+    print (f"LR = {LR}")
     try:
         to_gbq(df_funnel, 'dataexploration-193817.user_data.funnel_snapshots', project_id='dataexploration-193817', if_exists='append', credentials=gcp_credentials)
         print("Successfully wrote " + str(len(df_funnel)) + " rows to the table")
