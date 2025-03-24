@@ -1,8 +1,8 @@
+
 from google.oauth2 import service_account
 from google.cloud import bigquery
 from google.cloud import secretmanager
 import json
-import pandas as pd
 import users
 import metrics
 from pandas_gbq import to_gbq
@@ -41,12 +41,15 @@ def publish_funnel():
     print("Publishing funnel")
 
     bq_client,gcp_credentials = get_gcp_credentials()
-    
+    print("Got credentials")
+
     df_cr_users,  df_cr_app_launch = users.get_users_list(bq_client)
+
 
     languages = users.get_language_list(bq_client)
 
     df_funnel = metrics.build_funnel_dataframe( df_cr_users, df_cr_app_launch,index_col="language", languages=languages)
+
     df_funnel = metrics.add_level_percents(df_funnel)
     LR = df_funnel["LR"].sum()
     print (f"LR = {LR}")
